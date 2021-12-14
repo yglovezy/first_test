@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisGeneratorConfiguration">
+    <option name="credentials">
+      <map>
+        <entry key="jdbc:oracle:thin:@localhost:1521:orcl">
+          <value>
+            <Credential>
+              <option name="username" value="credit_admin" />
+            </Credential>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tableConfigs">
+      <map>
+        <entry key="T_ZTK_DATACOUNT">
+          <value>
+            <TableConfig>
+              <option name="basePackage" value="com.les.ch03mybatis" />
+              <option name="comment" value="true" />
+              <option name="domainName" value="TZtkDatacount" />
+              <option name="domainPackage" value="com.les.ch03mybatis" />
+              <option name="exampleName" value="TZtkDatacountExample" />
+              <option name="examplePackage" value="com.les.ch03mybatis" />
+              <option name="examplePostfix" value="Example" />
+              <option name="mapperName" value="TZtkDatacountMapper" />
+              <option name="mapperPackage" value="com.les.ch03mybatis" />
+              <option name="mapperPostfix" value="Mapper" />
+              <option name="moduleRootPath" value="$PROJECT_DIR$" />
+              <option name="name" value="T_ZTK_DATACOUNT" />
+              <option name="primaryKey" value="" />
+              <option name="resourcePath" value="src/main/resources" />
+              <option name="sourcePath" value="src/main/java" />
+              <option name="tableName" value="T_ZTK_DATACOUNT" />
+              <option name="useExample" value="true" />
+              <option name="xmlPackage" value="mapper" />
+            </TableConfig>
+          </value>
+        </entry>
+        <entry key="T_ZTK_EXPORT">
+          <value>
+            <TableConfig>
+              <option name="basePackage" value="com.les.ch03mybatis" />
+              <option name="comment" value="true" />
+              <option name="domainName" value="TZtkExport" />
+              <option name="domainPackage" value="com.les.ch03mybatis.entity" />
+              <option name="exampleName" value="TZtkExportExample" />
+              <option name="examplePackage" value="com.les.ch03mybatis.dao" />
+              <option name="examplePostfix" value="Example" />
+              <option name="mapperName" value="TZtkExportMapper" />
+              <option name="mapperPackage" value="com.les.ch03mybatis.dao" />
+              <option name="mapperPostfix" value="Mapper" />
+              <option name="moduleRootPath" value="$PROJECT_DIR$" />
+              <option name="name" value="T_ZTK_EXPORT" />
+              <option name="primaryKey" value="EXPID" />
+              <option name="resourcePath" value="src/main/resources" />
+              <option name="sourcePath" value="src/main/java" />
+              <option name="tableName" value="T_ZTK_EXPORT" />
+              <option name="useExample" value="true" />
+              <option name="xmlPackage" value="mapper" />
+            </TableConfig>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

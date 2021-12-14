@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.les.ch03mybatis.dao.TZtkMappingMapper">
+    <resultMap id="BaseResultMap" type="com.les.ch03mybatis.bo.TZtkMappingBo">
+        <id column="MAPPINGID" jdbcType="VARCHAR" property="mappingid"/>
+        <result column="DOMAINID" jdbcType="VARCHAR" property="domainid"/>
+        <result column="MLID" jdbcType="VARCHAR" property="mlid"/>
+        <result column="MAPPINGTYPE" jdbcType="VARCHAR" property="mappingtype"/>
+        <result column="MLID_SRC" jdbcType="VARCHAR" property="mlidSrc"/>
+        <result column="MLNAME_SRC" jdbcType="VARCHAR" property="mlnameSrc"/>
+        <result column="TABLENAME_SRC" jdbcType="VARCHAR" property="tablenameSrc"/>
+        <result column="TABLEJOIN" jdbcType="VARCHAR" property="tablejoin"/>
+        <result column="MAINTABLE" jdbcType="VARCHAR" property="maintable"/>
+        <result column="USERCONDITION" jdbcType="VARCHAR" property="usercondition"/>
+        <result column="ISMODIFIED" jdbcType="VARCHAR" property="ismodified"/>
+        <result column="SQLDESC" jdbcType="VARCHAR" property="sqldesc"/>
+        <result column="PNAME" jdbcType="VARCHAR" property="pname"/>
+        <result column="ISUSE" jdbcType="VARCHAR" property="isuse"/>
+        <result column="ISALL" jdbcType="VARCHAR" property="isall"/>
+        <result column="ORDERID" jdbcType="DECIMAL" property="orderid"/>
+        <result column="CREATEUSER" jdbcType="VARCHAR" property="createuser"/>
+        <result column="UPDATEUSER" jdbcType="VARCHAR" property="updateuser"/>
+        <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="SJKZYID" jdbcType="VARCHAR" property="sjkzyid"/>
+        <result column="ISHANDML" jdbcType="VARCHAR" property="ishandml"/>
+        <result column="GDTYPE" jdbcType="VARCHAR" property="gdtype"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.les.ch03mybatis.bo.TZtkMappingBo">
+        <result column="DATASQL" jdbcType="CLOB" property="datasql"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        MAPPINGID
+        ,
+        DOMAINID,
+        MLID,
+        MAPPINGTYPE,
+        MLID_SRC,
+        MLNAME_SRC,
+        TABLENAME_SRC,
+        TABLEJOIN,
+        MAINTABLE,
+        USERCONDITION,
+        ISMODIFIED,
+        SQLDESC,
+        PNAME,
+        ISUSE,
+        ISALL,
+        ORDERID,
+        "CREATEUSER",
+        UPDATEUSER,
+        CREATETIME,
+        UPDATETIME,
+        SJKZYID,
+        ISHANDML,
+        GDTYPE
+    </sql>
+    <sql id="Blob_Column_List">
+        DATASQL
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from T_ZTK_MAPPING
+        where MAPPINGID = #{mappingid,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultType="com.les.ch03mybatis.bo.TZtkMappingBo">
+        select t.DOMAINNAME,M.DOMAINID,M.MAPPINGID,M.MLID
+        from T_ZTK_MAPPING M,
+             T_ZTK_TYPE T
+        where m.DOMAINID = t.DOMAINID
+        order by DOMAINID
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from T_ZTK_MAPPING
+        where MAPPINGID = #{mappingid,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" keyColumn="MAPPINGID" keyProperty="mappingid"
+            parameterType="com.les.ch03mybatis.bo.TZtkMappingBo" useGeneratedKeys="true">
+        insert into T_ZTK_MAPPING (DOMAINID, MLID, MAPPINGTYPE,
+                                   MLID_SRC, MLNAME_SRC, TABLENAME_SRC,
+                                   TABLEJOIN, MAINTABLE, USERCONDITION,
+                                   ISMODIFIED, SQLDESC, PNAME,
+                                   ISUSE, ISALL, ORDERID,
+                                   "CREATEUSER", UPDATEUSER, CREATETIME,
+                                   UPDATETIME, SJKZYID, ISHANDML,
+                                   GDTYPE, DATASQL)
+        values (#{domainid,jdbcType=VARCHAR}, #{mlid,jdbcType=VARCHAR}, #{mappingtype,jdbcType=VARCHAR},
+                #{mlidSrc,jdbcType=VARCHAR}, #{mlnameSrc,jdbcType=VARCHAR}, #{tablenameSrc,jdbcType=VARCHAR},
+                #{tablejoin,jdbcType=VARCHAR}, #{maintable,jdbcType=VARCHAR}, #{usercondition,jdbcType=VARCHAR},
+                #{ismodified,jdbcType=VARCHAR}, #{sqldesc,jdbcType=VARCHAR}, #{pname,jdbcType=VARCHAR},
+                #{isuse,jdbcType=VARCHAR}, #{isall,jdbcType=VARCHAR}, #{orderid,jdbcType=DECIMAL},
+                #{createuser,jdbcType=VARCHAR}, #{updateuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+                #{updatetime,jdbcType=TIMESTAMP}, #{sjkzyid,jdbcType=VARCHAR}, #{ishandml,jdbcType=VARCHAR},
+                #{gdtype,jdbcType=VARCHAR}, #{datasql,jdbcType=CLOB})
+    </insert>
+    <insert id="insertSelective" keyColumn="MAPPINGID" keyProperty="mappingid"
+            parameterType="com.les.ch03mybatis.bo.TZtkMappingBo" useGeneratedKeys="true">
+        insert into T_ZTK_MAPPING
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="domainid != null">
+                DOMAINID,
+            </if>
+            <if test="mlid != null">
+                MLID,
+            </if>
+            <if test="mappingtype != null">
+                MAPPINGTYPE,
+            </if>
+            <if test="mlidSrc != null">
+                MLID_SRC,
+            </if>
+            <if test="mlnameSrc != null">
+                MLNAME_SRC,
+            </if>
+            <if test="tablenameSrc != null">
+                TABLENAME_SRC,
+            </if>
+            <if test="tablejoin != null">
+                TABLEJOIN,
+            </if>
+            <if test="maintable != null">
+                MAINTABLE,
+            </if>
+            <if test="usercondition != null">
+                USERCONDITION,
+            </if>
+            <if test="ismodified != null">
+                ISMODIFIED,
+            </if>
+            <if test="sqldesc != null">
+                SQLDESC,
+            </if>
+            <if test="pname != null">
+                PNAME,
+            </if>
+            <if test="isuse != null">
+                ISUSE,
+            </if>
+            <if test="isall != null">
+                ISALL,
+            </if>
+            <if test="orderid != null">
+                ORDERID,
+            </if>
+            <if test="createuser != null">
+                "CREATEUSER",
+            </if>
+            <if test="updateuser != null">
+                UPDATEUSER,
+            </if>
+            <if test="createtime != null">
+                CREATETIME,
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME,
+            </if>
+            <if test="sjkzyid != null">
+                SJKZYID,
+            </if>
+            <if test="ishandml != null">
+                ISHANDML,
+            </if>
+            <if test="gdtype != null">
+                GDTYPE,
+            </if>
+            <if test="datasql != null">
+                DATASQL,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="domainid != null">
+                #{domainid,jdbcType=VARCHAR},
+            </if>
+            <if test="mlid != null">
+                #{mlid,jdbcType=VARCHAR},
+            </if>
+            <if test="mappingtype != null">
+                #{mappingtype,jdbcType=VARCHAR},
+            </if>
+            <if test="mlidSrc != null">
+                #{mlidSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="mlnameSrc != null">
+                #{mlnameSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="tablenameSrc != null">
+                #{tablenameSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="tablejoin != null">
+                #{tablejoin,jdbcType=VARCHAR},
+            </if>
+            <if test="maintable != null">
+                #{maintable,jdbcType=VARCHAR},
+            </if>
+            <if test="usercondition != null">
+                #{usercondition,jdbcType=VARCHAR},
+            </if>
+            <if test="ismodified != null">
+                #{ismodified,jdbcType=VARCHAR},
+            </if>
+            <if test="sqldesc != null">
+                #{sqldesc,jdbcType=VARCHAR},
+            </if>
+            <if test="pname != null">
+                #{pname,jdbcType=VARCHAR},
+            </if>
+            <if test="isuse != null">
+                #{isuse,jdbcType=VARCHAR},
+            </if>
+            <if test="isall != null">
+                #{isall,jdbcType=VARCHAR},
+            </if>
+            <if test="orderid != null">
+                #{orderid,jdbcType=DECIMAL},
+            </if>
+            <if test="createuser != null">
+                #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateuser != null">
+                #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sjkzyid != null">
+                #{sjkzyid,jdbcType=VARCHAR},
+            </if>
+            <if test="ishandml != null">
+                #{ishandml,jdbcType=VARCHAR},
+            </if>
+            <if test="gdtype != null">
+                #{gdtype,jdbcType=VARCHAR},
+            </if>
+            <if test="datasql != null">
+                #{datasql,jdbcType=CLOB},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.les.ch03mybatis.bo.TZtkMappingBo">
+        update T_ZTK_MAPPING
+        <set>
+            <if test="domainid != null">
+                DOMAINID = #{domainid,jdbcType=VARCHAR},
+            </if>
+            <if test="mlid != null">
+                MLID = #{mlid,jdbcType=VARCHAR},
+            </if>
+            <if test="mappingtype != null">
+                MAPPINGTYPE = #{mappingtype,jdbcType=VARCHAR},
+            </if>
+            <if test="mlidSrc != null">
+                MLID_SRC = #{mlidSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="mlnameSrc != null">
+                MLNAME_SRC = #{mlnameSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="tablenameSrc != null">
+                TABLENAME_SRC = #{tablenameSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="tablejoin != null">
+                TABLEJOIN = #{tablejoin,jdbcType=VARCHAR},
+            </if>
+            <if test="maintable != null">
+                MAINTABLE = #{maintable,jdbcType=VARCHAR},
+            </if>
+            <if test="usercondition != null">
+                USERCONDITION = #{usercondition,jdbcType=VARCHAR},
+            </if>
+            <if test="ismodified != null">
+                ISMODIFIED = #{ismodified,jdbcType=VARCHAR},
+            </if>
+            <if test="sqldesc != null">
+                SQLDESC = #{sqldesc,jdbcType=VARCHAR},
+            </if>
+            <if test="pname != null">
+                PNAME = #{pname,jdbcType=VARCHAR},
+            </if>
+            <if test="isuse != null">
+                ISUSE = #{isuse,jdbcType=VARCHAR},
+            </if>
+            <if test="isall != null">
+                ISALL = #{isall,jdbcType=VARCHAR},
+            </if>
+            <if test="orderid != null">
+                ORDERID = #{orderid,jdbcType=DECIMAL},
+            </if>
+            <if test="createuser != null">
+                "CREATEUSER" = #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateuser != null">
+                UPDATEUSER = #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sjkzyid != null">
+                SJKZYID = #{sjkzyid,jdbcType=VARCHAR},
+            </if>
+            <if test="ishandml != null">
+                ISHANDML = #{ishandml,jdbcType=VARCHAR},
+            </if>
+            <if test="gdtype != null">
+                GDTYPE = #{gdtype,jdbcType=VARCHAR},
+            </if>
+            <if test="datasql != null">
+                DATASQL = #{datasql,jdbcType=CLOB},
+            </if>
+        </set>
+        where MAPPINGID = #{mappingid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.les.ch03mybatis.bo.TZtkMappingBo">
+        update T_ZTK_MAPPING
+        set DOMAINID      = #{domainid,jdbcType=VARCHAR},
+            MLID          = #{mlid,jdbcType=VARCHAR},
+            MAPPINGTYPE   = #{mappingtype,jdbcType=VARCHAR},
+            MLID_SRC      = #{mlidSrc,jdbcType=VARCHAR},
+            MLNAME_SRC    = #{mlnameSrc,jdbcType=VARCHAR},
+            TABLENAME_SRC = #{tablenameSrc,jdbcType=VARCHAR},
+            TABLEJOIN     = #{tablejoin,jdbcType=VARCHAR},
+            MAINTABLE     = #{maintable,jdbcType=VARCHAR},
+            USERCONDITION = #{usercondition,jdbcType=VARCHAR},
+            ISMODIFIED    = #{ismodified,jdbcType=VARCHAR},
+            SQLDESC       = #{sqldesc,jdbcType=VARCHAR},
+            PNAME         = #{pname,jdbcType=VARCHAR},
+            ISUSE         = #{isuse,jdbcType=VARCHAR},
+            ISALL         = #{isall,jdbcType=VARCHAR},
+            ORDERID       = #{orderid,jdbcType=DECIMAL},
+            "CREATEUSER"  = #{createuser,jdbcType=VARCHAR},
+            UPDATEUSER    = #{updateuser,jdbcType=VARCHAR},
+            CREATETIME    = #{createtime,jdbcType=TIMESTAMP},
+            UPDATETIME    = #{updatetime,jdbcType=TIMESTAMP},
+            SJKZYID       = #{sjkzyid,jdbcType=VARCHAR},
+            ISHANDML      = #{ishandml,jdbcType=VARCHAR},
+            GDTYPE        = #{gdtype,jdbcType=VARCHAR},
+            DATASQL       = #{datasql,jdbcType=CLOB}
+        where MAPPINGID = #{mappingid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.les.ch03mybatis.bo.TZtkMappingBo">
+        update T_ZTK_MAPPING
+        set DOMAINID      = #{domainid,jdbcType=VARCHAR},
+            MLID          = #{mlid,jdbcType=VARCHAR},
+            MAPPINGTYPE   = #{mappingtype,jdbcType=VARCHAR},
+            MLID_SRC      = #{mlidSrc,jdbcType=VARCHAR},
+            MLNAME_SRC    = #{mlnameSrc,jdbcType=VARCHAR},
+            TABLENAME_SRC = #{tablenameSrc,jdbcType=VARCHAR},
+            TABLEJOIN     = #{tablejoin,jdbcType=VARCHAR},
+            MAINTABLE     = #{maintable,jdbcType=VARCHAR},
+            USERCONDITION = #{usercondition,jdbcType=VARCHAR},
+            ISMODIFIED    = #{ismodified,jdbcType=VARCHAR},
+            SQLDESC       = #{sqldesc,jdbcType=VARCHAR},
+            PNAME         = #{pname,jdbcType=VARCHAR},
+            ISUSE         = #{isuse,jdbcType=VARCHAR},
+            ISALL         = #{isall,jdbcType=VARCHAR},
+            ORDERID       = #{orderid,jdbcType=DECIMAL},
+            "CREATEUSER"  = #{createuser,jdbcType=VARCHAR},
+            UPDATEUSER    = #{updateuser,jdbcType=VARCHAR},
+            CREATETIME    = #{createtime,jdbcType=TIMESTAMP},
+            UPDATETIME    = #{updatetime,jdbcType=TIMESTAMP},
+            SJKZYID       = #{sjkzyid,jdbcType=VARCHAR},
+            ISHANDML      = #{ishandml,jdbcType=VARCHAR},
+            GDTYPE        = #{gdtype,jdbcType=VARCHAR}
+        where MAPPINGID = #{mappingid,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.les.ch03mybatis.dao.queryMapper">
+    <insert id="insertCount">
+        insert into t_ztk_datacount(domainid, mlid, datacount)
+        values (#{domainid}, #{mlid}, #{datacount})
+    </insert>
+    <update id="updateCntById">
+        update t_ztk_datacount
+        set datacount=#{param.cnt}
+        where mlid = #{param.mlid}
+    </update>
+    <delete id="deleteCountById">
+        delete from t_ztk_datacount
+        <where>
+            mlid=#{id}
+        </where>
+    </delete>
+    <select id="getCntById" resultType="com.les.ch03mybatis.entity.Count">
+        select datacount from t_ztk_datacount
+        <where>
+            mlid=#{mlid}
+        </where>
+    </select>
+
+
+    <select id="getAllById" resultType="com.les.ch03mybatis.entity.Count">
+        select domainid,mlid,datacount,updatetime
+        from t_ztk_datacount
+        where mlid = #{mlid}
+
+    </select>
+    <select id="getAllBuDomainid" resultType="com.les.ch03mybatis.entity.Count">
+        select domainid,mlid,datacount,updatetime
+        from t_ztk_datacount
+        where domainid = #{id}
+    </select>
+</mapper>

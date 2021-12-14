@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form role="form" th:action="@{/input}" method="post" enctype="multipart/form-data">
+<div class="form_group">
+    <label for="InputName">姓名</label><br/>
+    <input type="text" name="username" id="InputName">
+</div>
+
+<div class="form_group">
+    <label for="InputFile">照片</label><br/>
+    <input type="file" name="photo" id="InputFile">
+</div>
+
+    <div class="form-group">
+        <label for="InputFile">照片s</label><br/>
+        <input type="file" name="photos" multiple>
+    </div>
+<button type="submit" class="btn btn-primary">提交</button>
+</form>
+</body>
+</html>

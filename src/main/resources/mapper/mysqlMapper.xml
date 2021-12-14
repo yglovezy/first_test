@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.les.ch03mybatis.dao.mysqlMapper">
+    <update id="updateOrder">
+        update tb_order
+        set
+            num=#{param.num}
+        where id = #{param.id}
+    </update>
+    <update id="updateOrder1">
+        update tb_order
+        set
+            num=#{num}
+        where id = #{id}
+    </update>
+    <update id="updatePrice">
+        update tb_order
+        set price=#{price}
+        where id = #{id}
+    </update>
+    <select id="getuser" resultType="com.les.ch03mybatis.entity.TbUser">
+        select *
+        from tb_user
+        where id = #{id};
+    </select>
+    <select id="getOrder" resultType="com.les.ch03mybatis.entity.TbOrder">
+        select *
+        from tb_order
+        where id = #{id}
+    </select>
+    <select id="getUserName" resultType="java.lang.String">
+        select username
+        from tb_user
+        where id = #{id}
+
+    </select>
+    <select id="getAllUser" resultType="com.les.ch03mybatis.bo.TbUserBo">
+        select *
+        from tb_user
+    </select>
+    <select id="getAllOrder" resultType="com.les.ch03mybatis.bo.TbOrderBo">
+        select t.*,u.username,u.address
+        from tb_order t,
+             tb_user u
+        where t.user_id = u.id
+    </select>
+    <select id="getCity" resultType="java.lang.String">
+        select name
+        from world.city
+        where population > #{pop}
+
+    </select>
+    <select id="getCityNum" resultType="com.les.ch03mybatis.bo.CityNumBo">
+        SELECT t.`Name`,CountryCode,count(*) city_num
+        FROM world.city c,
+             world.country t
+        where c.CountryCode = t.`Code`
+        GROUP BY CountryCode
+    </select>
+    <select id="getUserOrder" resultType="com.les.ch03mybatis.bo.TbOrderBo">
+        select o.*,u.username,u.address
+        from tb_order o,
+             tb_user u
+        where user_id = #{id}
+          and u.id = o.user_id
+    </select>
+    <select id="getUserCost" resultType="java.lang.String">
+        select CONCAT(', 一共消费金额： ', sum(price), '，购买了', count(o.id), ' 件商品')
+        from tb_order o,
+             tb_user u
+        where user_id = #{id}
+          and u.id = o.user_id
+        group by user_id
+
+    </select>
+</mapper>
+
