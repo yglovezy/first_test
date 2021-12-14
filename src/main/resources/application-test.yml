@@ -13,4 +13,4 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml  #sql映射文件位置
 
 person:
-  name: test_zhangsan
+  name: test_zhangsa
