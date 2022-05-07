@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://F:/学习资料/微服务/day01-SpringCloud01/代码/cloud-demo/order-service" charset="UTF-8" />
+    <file url="file://F:/学习资料/微服务/day01-SpringCloud01/代码/cloud-demo/user-service" charset="UTF-8" />
   </component>
 </project>

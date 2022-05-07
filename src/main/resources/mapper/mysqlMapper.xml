@@ -41,6 +41,7 @@
     <select id="getAllOrder" resultType="com.les.ch03mybatis.bo.TbOrderBo">
         select t.*,u.username,u.address
         from tb_order t,
+
              tb_user u
         where t.user_id = u.id
     </select>
